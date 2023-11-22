@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Console Module """
+""" Console MK Module """
 import cmd
 import sys
 import re
