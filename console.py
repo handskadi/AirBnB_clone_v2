@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Console Module """
+""" Console MK Module """
 import cmd
 import sys
 import re
@@ -347,7 +347,7 @@ class HBNBCommand(cmd.Cmd):
         for i, att_name in enumerate(args):
             # block only runs on even iterations
             if (i % 2 == 0):
-4bf7e-e9a5-4c7f-a8c1-99cc408b0a70        att_val = args[i + 1]  # following item is value
+                att_val = args[i + 1]  # following item is value
                 if not att_name:  # check for att_name
                     print("** attribute name missing **")
                     return
