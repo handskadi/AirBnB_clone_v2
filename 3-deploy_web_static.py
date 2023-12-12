@@ -21,7 +21,13 @@ def do_pack():
     if os.path.isdir("versions") is False:
         local("mkdir -p versions")
     # Create or copy your index.html file to the web_static directory
-    local("echo '<html><head></head><body>Hello World!</body></html>' > web_static/index.html")
+    local("echo '<html>' > web_static/index.html")
+    local("echo '  <head>' >> web_static/index.html")
+    local("echo '  </head>' >> web_static/index.html")
+    local("echo '  <body>' >> web_static/index.html")
+    local("echo '    Holberton School' >> web_static/index.html")
+    local("echo '  </body>' >> web_static/index.html")
+    local("echo '</html>' >> web_static/index.html")
 
     if local("tar -cvzf {} web_static".format(file)).failed:
         return None
