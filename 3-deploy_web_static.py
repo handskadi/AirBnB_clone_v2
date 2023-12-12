@@ -12,13 +12,20 @@ env.hosts = ['100.25.179.31', '54.237.87.213']
 def do_pack():
     """Create a tar gzipped archive of the directory web_static."""
     dt = datetime.utcnow()
-    file = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
+    file = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
+                                                         dt.month,
+                                                         dt.day,
+                                                         dt.hour,
+                                                         dt.minute,
+                                                         dt.second)
     if os.path.isdir("versions") is False:
         local("mkdir -p versions")
+    # Create or copy your index.html file to the web_static directory
+    local("echo '<html><head></head><body>Hello World!</body></html>' > web_static/index.html")
+
     if local("tar -cvzf {} web_static".format(file)).failed:
         return None
     return file
-
 
 def do_deploy(archive_path):
     """Distributes an archive to a web server.
