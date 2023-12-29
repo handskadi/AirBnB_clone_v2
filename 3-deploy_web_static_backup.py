@@ -19,24 +19,12 @@ def do_pack():
                                                          dt.minute,
                                                          dt.second)
     if os.path.isdir("versions") is False:
-        local("mkdir -p versions")
-    # Create or copy your index.html file to the web_static directory
-    local("""echo '<html>
-            <head>
-                <meta charset="UTF-8" />
-                <title>AirBnB clone</title>
-            </head>
-            <body style="margin: 0px; padding: 0px;">
-                <header style="height: 70px; width: 100%; background-color: #FF0000"></header>
-                <footer style="position: absolute; left: 0; bottom: 0; height: 60px; width: 100%; background-color: #00FF00; text-align: center; overflow: hidden;">
-                    <p style="line-height: 60px; margin: 0px;">Holberton School</p>
-                </footer>
-            </body>
-            </html>' > web_static/index.html""")
-
-    if local("tar -cvzf {} web_static".format(file)).failed:
+        if local("mkdir -p versions").failed is True:
+            return None
+    if local("tar -cvzf {} web_static".format(file)).failed is True:
         return None
     return file
+
 
 def do_deploy(archive_path):
     """Distributes an archive to a web server.
